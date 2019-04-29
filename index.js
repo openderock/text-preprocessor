@@ -1,7 +1,4 @@
-const defaultOptions = {
-    trim: true,
-    lowercase: true,
-};
+const CONTRACTIONS = require('./data/contractions');
 
 class TextPreprocessor {
     /**
@@ -30,6 +27,15 @@ class TextPreprocessor {
      */
     toString() {
         return this.text;
+    };
+    /**
+     * Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to "do not".
+     */
+    expandContractions() {
+        for (let key in CONTRACTIONS) {
+            this.text = this.text.replace(new RegExp(key, 'gi'), CONTRACTIONS[key][0]);
+        }
+        return this;
     }
 }
 
