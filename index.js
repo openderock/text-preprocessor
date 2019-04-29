@@ -1,18 +1,28 @@
+const UNICODES = require('./data/unicode-charchters');
 const CONTRACTIONS = require('./data/contractions');
+const { unescape } = require('lodash');
 
 class TextPreprocessor {
     /**
-     * 
+     * Normalizing texts before any natural language processing
      * @param {string} text 
      */
     constructor(text) {
         this.text = text;
     };
     /**
-     * Removes the leading and trailing white space and line terminator characters from a string.
+     * Removes the leading and trailing white space and line terminator characters
+     * and strips extra whitespace from all documents, leaving only at most one whitespace between any two other characters.
      */
-    trim() {
-        this.text = this.text.trim();
+    clean() {
+        this.text = this.text.trim().replace(/\s{2,}/g, ' ');
+        return this;
+    };
+    /**
+     * Converts the HTML entities &amp;, &lt;, &gt;, &quot;, and &#39; in string to their corresponding characters.
+     */
+    unescape() {
+        this.text = unescape(this.text);
         return this;
     };
     /**
@@ -36,7 +46,74 @@ class TextPreprocessor {
             this.text = this.text.replace(new RegExp(key, 'gi'), CONTRACTIONS[key][0]);
         }
         return this;
+    };
+    /**
+     * Replaces hugely-ignorant, and widely subjective transliteration of latin, cryllic, greek unicode characters with english ascii.
+     */
+    killUnicode() {
+        let chars = this.text.split('');
+        chars.forEach((s, i) => {
+            if (UNICODES[s]) {
+                chars[i] = UNICODES[s];
+            }
+        });
+        this.text = chars.join('');
+        return this;
+    };
+    /**
+     * Replaces any occurrence of the given expression with the givven string
+     * @param {RegExp} regexp 
+     * @param {String} value
+     */
+    replace(regexp, value) {
+        this.text = this.text.replace(regexp, value);
+        return this;
+    };
+    /**
+     * Removes any occurrence of the given expression
+     * @param {RegExp} regexp 
+     */
+    remove(regexp) {
+        return this.replace(regexp, '');
+    };
+    /**
+     * Removes #tags, @mentions from start of the text
+     */
+    removeTagsAndMentions() {
+        return this.remove(/^[#@]/);
+    };
+    /**
+     * Removes punctuation from end of the text
+     */
+    removePunctuation() {
+        return this.remove(/[,;.!?]+$/);
+    };
+    /**
+     * Coerce single curly quotes. `don’t` to `don't`
+     */
+    normalizeSingleCurlyQuotes() {
+        return this.replace(/[\u0027\u0060\u00B4\u2018\u2019\u201A\u201B\u2032\u2035\u2039\u203A]+/g, '\'');
     }
+    /**
+     * Coerce double curly quotes. `it is «Khorzu”` to `it is "Khorzu"`
+     */
+    normalizeDoubleCurlyQuotes() {
+        return this.replace(/[\u0022\u00AB\u00BB\u201C\u201D\u201E\u201F\u2033\u2034\u2036\u2037\u2E42\u301D\u301E\u301F\uFF02]+/g, '"');
+    }
+    /**
+     * Executes default normalizing methods. including:
+     * `clean`,`toLowerCase`,`unescape`,`killUnicode` and `normalizeSingleCurlyQuotes`
+     */
+    defaults() {
+        return this.chain('clean', 'toLowerCase', 'unescape', 'killUnicode', 'normalizeSingleCurlyQuotes');
+    };
+    /**
+     * Executes chain of givven method names
+     */
+    chain() {
+        Array.from(arguments).forEach(arg => this[arg]());
+        return this;
+    };
 }
 
 /**
