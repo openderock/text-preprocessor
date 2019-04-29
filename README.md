@@ -29,47 +29,38 @@ console.log(text.toString());
 // OUTPUT: "that is great! & but do not take too long okay? bjork-yo"
 ```
 
-## Classes
 
-<dl>
-<dt><a href="#TextPreprocessor">TextPreprocessor</a></dt>
-<dd></dd>
-</dl>
+## preprocessor(text) ⇒ [<code>TextPreprocessor</code>](#TextPreprocessor)
+Constructs a TextPreprocessor instance
 
-## Functions
 
-<dl>
-<dt><a href="#preprocessor">preprocessor(text)</a> ⇒ <code><a href="#TextPreprocessor">TextPreprocessor</a></code></dt>
-<dd><p>Normalizing texts before any natural language processing</p>
-</dd>
-</dl>
+| Param | Type |
+| --- | --- |
+| text | <code>String</code> |
 
-<a name="TextPreprocessor"></a>
-
-## TextPreprocessor
-**Kind**: global class
+## Methods
 
 * [TextPreprocessor](#TextPreprocessor)
     * [new TextPreprocessor(text)](#new_TextPreprocessor_new)
-    * [.clean()](#TextPreprocessor+clean)
-    * [.unescape()](#TextPreprocessor+unescape)
-    * [.toLowerCase()](#TextPreprocessor+toLowerCase)
-    * [.toString()](#TextPreprocessor+toString)
-    * [.expandContractions()](#TextPreprocessor+expandContractions)
-    * [.killUnicode()](#TextPreprocessor+killUnicode)
-    * [.replace(regexp, value)](#TextPreprocessor+replace)
-    * [.remove(regexp)](#TextPreprocessor+remove)
-    * [.removeTagsAndMentions()](#TextPreprocessor+removeTagsAndMentions)
-    * [.removePunctuation()](#TextPreprocessor+removePunctuation)
-    * [.normalizeSingleCurlyQuotes()](#TextPreprocessor+normalizeSingleCurlyQuotes)
-    * [.normalizeDoubleCurlyQuotes()](#TextPreprocessor+normalizeDoubleCurlyQuotes)
-    * [.defaults()](#TextPreprocessor+defaults)
-    * [.chain()](#TextPreprocessor+chain)
+    * [.clean()](#clean)
+    * [.unescape()](#unescape)
+    * [.toLowerCase()](#toLowerCase)
+    * [.toString()](#toString)
+    * [.expandContractions()](#expandContractions)
+    * [.killUnicode()](#killUnicode)
+    * [.replace(regexp, value)](#replace)
+    * [.remove(regexp)](#remove)
+    * [.removeTagsAndMentions()](#removeTagsAndMentions)
+    * [.removePunctuation()](#removePunctuation)
+    * [.normalizeSingleCurlyQuotes()](#normalizeSingleCurlyQuotes)
+    * [.normalizeDoubleCurlyQuotes()](#normalizeDoubleCurlyQuotes)
+    * [.defaults()](#defaults)
+    * [.chain()](#chain)
 
 <a name="new_TextPreprocessor_new"></a>
 
 ### new TextPreprocessor(text)
-Normalizing texts before any natural language processing
+Constructs a TextPreprocessor instance
 
 
 | Param | Type |
@@ -78,46 +69,39 @@ Normalizing texts before any natural language processing
 
 <a name="TextPreprocessor+clean"></a>
 
-### textPreprocessor.clean()
+### clean()
 and strips extra whitespace from all documents, leaving only at most one whitespace between any two other characters.
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+unescape"></a>
 
-### textPreprocessor.unescape()
+### unescape()
 Converts the HTML entities &amp;, &lt;, &gt;, &quot;, and &#39; in string to their corresponding characters.
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+toLowerCase"></a>
 
-### textPreprocessor.toLowerCase()
+### toLowerCase()
 Converts all the alphabetic characters in a string to lowercase.
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+toString"></a>
 
-### textPreprocessor.toString()
+### toString()
 returns the result of chains so far
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+expandContractions"></a>
 
-### textPreprocessor.expandContractions()
+### expandContractions()
 Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to "do not".
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+killUnicode"></a>
 
-### textPreprocessor.killUnicode()
+### killUnicode()
 Replaces hugely-ignorant, and widely subjective transliteration of latin, cryllic, greek unicode characters with english ascii.
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+replace"></a>
 
-### textPreprocessor.replace(regexp, value)
+### replace(regexp, value)
 Replaces any occurrence of the given expression with the givven string
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 
 | Param | Type |
 | --- | --- |
@@ -126,10 +110,9 @@ Replaces any occurrence of the given expression with the givven string
 
 <a name="TextPreprocessor+remove"></a>
 
-### textPreprocessor.remove(regexp)
+### remove(regexp)
 Removes any occurrence of the given expression
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 
 | Param | Type |
 | --- | --- |
@@ -137,49 +120,34 @@ Removes any occurrence of the given expression
 
 <a name="TextPreprocessor+removeTagsAndMentions"></a>
 
-### textPreprocessor.removeTagsAndMentions()
+### removeTagsAndMentions()
 Removes #tags, @mentions from start of the text
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+removePunctuation"></a>
 
-### textPreprocessor.removePunctuation()
+### removePunctuation()
 Removes punctuation from end of the text
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+normalizeSingleCurlyQuotes"></a>
 
-### textPreprocessor.normalizeSingleCurlyQuotes()
+### normalizeSingleCurlyQuotes()
 Coerce single curly quotes. `don’t` to `don't`
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+normalizeDoubleCurlyQuotes"></a>
 
-### textPreprocessor.normalizeDoubleCurlyQuotes()
+### normalizeDoubleCurlyQuotes()
 Coerce double curly quotes. `it is «Khorzu”` to `it is "Khorzu"`
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+defaults"></a>
 
-### textPreprocessor.defaults()
+### defaults()
 `clean`,`toLowerCase`,`unescape`,`killUnicode` and `normalizeSingleCurlyQuotes`
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+chain"></a>
 
-### textPreprocessor.chain()
+### chain()
 Executes chain of givven method names
 
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="preprocessor"></a>
-
-## preprocessor(text) ⇒ [<code>TextPreprocessor</code>](#TextPreprocessor)
-Normalizing texts before any natural language processing
-
-**Kind**: global function
-
-| Param | Type |
-| --- | --- |
-| text | <code>String</code> |
 
 
