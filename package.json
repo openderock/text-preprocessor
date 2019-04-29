@@ -1,0 +1,15 @@
+{
+  "name": "text-preprocessor",
+  "version": "1.0.0",
+  "description": "Normalizing texts before any natural language processing",
+  "main": "index.js",
+  "repository": "https://github.com/openderock/text-preprocessor",
+  "author": "Sajjad Shirazy <shirazy.sajjad@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "ava --verbose"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1"
+  }
+}
