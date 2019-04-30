@@ -10,6 +10,7 @@ module.exports = {
     "didn't": ["did not"],
     "doesn't": ["does not"],
     "don't": ["do not"],
+    "dunno": ["do not"],
     "hadn't": ["had not"],
     "hadn't've": ["had not have"],
     "hasn't": ["has not"],
