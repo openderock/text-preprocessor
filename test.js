@@ -14,8 +14,8 @@ test('toLowerCase', t => {
     t.is(output, 'hi there');
 });
 test('expandContractions', t => {
-    const output = preprocessor(`that's great!`).expandContractions().toString();
-    t.is(output, 'that is great!');
+    const output = preprocessor(`That's great! i'm gonna buy it.`).expandContractions().toString();
+    t.is(output, 'that is great! i am going to buy it.');
 });
 test('killUnicode', t => {
     const output = preprocessor('bjŏȒk—Ɏó').killUnicode().toString();

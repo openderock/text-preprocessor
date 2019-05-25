@@ -42,6 +42,7 @@ class TextPreprocessor {
      * Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to "do not".
      */
     expandContractions() {
+        this.toLowerCase();
         for (let key in CONTRACTIONS) {
             this.text = this.text.replace(new RegExp(key, 'gi'), CONTRACTIONS[key][0]);
         }
