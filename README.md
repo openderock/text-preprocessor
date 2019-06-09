@@ -53,7 +53,6 @@ Constructs a TextPreprocessor instance
     * [.removeTagsAndMentions()](#TextPreprocessor+removeTagsAndMentions)
     * [.removeSpecialCharachters()](#TextPreprocessor+removeSpecialCharachters)
     * [.removeURLs()](#TextPreprocessor+removeURLs)
-    * [.removeEmails()](#TextPreprocessor+removeEmails)
     * [.removeParenthesesContents()](#TextPreprocessor+removeParenthesesContents)
     * [.removePunctuation()](#TextPreprocessor+removePunctuation)
     * [.normalizeSingleCurlyQuotes()](#TextPreprocessor+normalizeSingleCurlyQuotes)
@@ -145,13 +144,7 @@ Removes all special charachters
 <a name="TextPreprocessor+removeURLs"></a>
 
 ### textPreprocessor.removeURLs()
-Removes Urls
-
-**Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
-<a name="TextPreprocessor+removeEmails"></a>
-
-### textPreprocessor.removeEmails()
-Removes Emails
+Removes Urls and emails
 
 **Kind**: instance method of [<code>TextPreprocessor</code>](#TextPreprocessor)
 <a name="TextPreprocessor+removeParenthesesContents"></a>

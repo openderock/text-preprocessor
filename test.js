@@ -42,11 +42,8 @@ test('defaults', t => {
     t.is(output, `that's great! & but don't take too long okay? bjork-yo`);
 });
 test('removeURL & remove Email', t => {
-    const output = preprocessor('     that`s great!    \n \t  &amp;  but https://atlanticmedia.122.2o7.net/b/ss/atlanticprod/1/H.22--NS/0 don’t take too long test@example.com okay?   \n bjŏȒk—Ɏó ')
-        .defaults()
-        .removeEmails()
+    const output = preprocessor('that is an email shirazy.sajjad@gmail.com and this is a url: github.com.')
         .removeURLs()
-        .clean()
         .toString();
-    t.is(output, `that's great! & but don't take too long okay? bjork-yo`);
+    t.is(output, `that is an email  and this is a url: `);
 });

@@ -1,6 +1,6 @@
 {
   "name": "text-preprocessor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Normalizing texts before any natural language processing",
   "main": "index.js",
   "repository": "https://github.com/openderock/text-preprocessor",

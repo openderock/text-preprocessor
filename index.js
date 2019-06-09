@@ -91,16 +91,10 @@ class TextPreprocessor {
         return this.remove(/[^\w\s]/gi);
     };
     /**
-     * Removes Urls
+     * Removes Urls and emails
      */
     removeURLs() {
-        return this.remove(urlRegex());
-    };
-    /**
-     * Removes Emails
-     */
-    removeEmails() {
-        return this.remove(/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g);
+        return this.remove(urlRegex({ strict: false }));
     };
     /**
      * Remove brackets and parentheses contents.
