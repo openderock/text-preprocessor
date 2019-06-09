@@ -1,6 +1,7 @@
 const UNICODES = require('./data/unicode-charchters');
 const CONTRACTIONS = require('./data/contractions');
 const { unescape } = require('lodash');
+const urlRegex = require('url-regex');
 
 class TextPreprocessor {
     /**
@@ -84,10 +85,35 @@ class TextPreprocessor {
         return this.remove(/^[#@]/);
     };
     /**
+     * Removes all special charachters
+     */
+    removeSpecialCharachters() {
+        return this.remove(/[^\w\s]/gi);
+    };
+    /**
+     * Removes Urls
+     */
+    removeURLs() {
+        return this.remove(urlRegex());
+    };
+    /**
+     * Removes Emails
+     */
+    removeEmails() {
+        return this.remove(/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g);
+    };
+    /**
+     * Remove brackets and parentheses contents.
+     * @example `Hello, this is Mike (example)` to `Hello, this is Mike `
+     */
+    removeParenthesesContents() {
+        return this.remove(/\[.*\]/g).remove(/\(.*\)/g);
+    }
+    /**
      * Removes punctuation from end of the text
      */
     removePunctuation() {
-        return this.remove(/[,;.!?]+$/);
+        return this.remove(/[,;.!?]+$/g);
     };
     /**
      * Coerce single curly quotes. `don’t` to `don't`
