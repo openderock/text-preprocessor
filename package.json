@@ -1,13 +1,17 @@
 {
   "name": "@derock.ir/text-preprocessor",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "",
   "author": "",
-  "private": true,
+  "private": false,
   "license": "UNLICENSED",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
+    "prepublish": "npm run build",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -43,7 +47,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "webpack": "^5.73.0"
   },
   "jest": {
     "moduleFileExtensions": [
